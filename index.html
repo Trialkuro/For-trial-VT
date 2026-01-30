@@ -7,14 +7,15 @@
     <body>
         <div class="container">
             <div >
-                <h1 class = "header_text">ikaw na bahala unsay ibutang!</h1>
-                <h1 class = "header_text">whahaha</h1>
+                <h1 class="header_text">Can I give you something this Valentine's?</h1>
+                <!-- <h1 class="header_text">whahaha</h1> -->
             </div>
             <div class="gif_container">
-                <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExcDdtZ2JiZDR0a3lvMWF4OG8yc3p6Ymdvd3g2d245amdveDhyYmx6eCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/cLS1cfxvGOPVpf9g3y/giphy.gif" alt="Cute animated illustration">
+                <!-- <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExcDdtZ2JiZDR0a3lvMWF4OG8yc3p6Ymdvd3g2d245amdveDhyYmx6eCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/cLS1cfxvGOPVpf9g3y/giphy.gif" alt="Cute animated illustration"> -->
+                <img src="https://media3.giphy.com/media/v1.Y2lkPTZjMDliOTUyN3hlbnJ1YmFxY3p6MnB1N3FydHFranVxMjkyMnloMmRrODZ4eTV6NCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/kBZ212yGzFaxgkSIKW/giphy.gif" alt="Funny animated illustration">
             </div>
             <div class = "buttons">
-                <button class="btn" id = "yesButton" onclick="nextPage()">Big YES</button>
+                <button class="btn" id = "yesButton" onclick="nextPage()">YES</button>
                 <button class="btn" id="noButton" onmouseover="moveButton()" onclick="moveButton()">No</button>
                 <script>
                     function nextPage() {
@@ -27,6 +28,35 @@
                         document.getElementById('noButton').style.left = `${x}px`;
                         document.getElementById('noButton').style.top = `${y}px`;
                     }
+
+                    
+                    (function() {
+                        var yes = document.getElementById('yesButton');
+                        var no = document.getElementById('noButton');
+                        if (!yes || !no) return;
+
+                        var yesScale = 1.0;            // current scale (persists across hovers)
+                        var hoverIncrement = 0.12;     // amount to grow each hover
+                        var maxScale = 4.0;            // safety cap
+
+                        // ensure transform origin and transition are present
+                        yes.style.transformOrigin = 'center';
+                        // apply initial scale
+                        yes.style.transform = `scale(${yesScale})`;
+
+                        // on each hover increase the scale and apply it (cumulative)
+                        no.addEventListener('mouseenter', function() {
+                            yesScale = Math.min(maxScale, +(yesScale + hoverIncrement).toFixed(3));
+                            yes.style.transform = `scale(${yesScale})`;
+                        });
+                        no.addEventListener('click', function() {
+                            yesScale = Math.min(maxScale, +(yesScale + hoverIncrement).toFixed(3));
+                            yes.style.transform = `scale(${yesScale})`;
+                        });
+                        // keep moving behavior
+                        no.addEventListener('mouseover', moveButton);
+                        no.addEventListener('click', moveButton);
+                    })();
                 </script> 
             </div>
         </div>
